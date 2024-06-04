@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-void updateArray(int arr[], int index, int element){
+int updateArray(int arr[], int index, int element){
     arr[index]=element;
 }
 void display(int arr[], int size){

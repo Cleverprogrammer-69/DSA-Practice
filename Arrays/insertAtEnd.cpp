@@ -14,7 +14,7 @@ int main(){
     int arr[100] = {2,4,1,-2,100};
     int size = 5, element = 101;
     arrayPush(arr, size, element);
-    cout<<size<<endl;
+
     display(arr, size);
     return 0;
 }
