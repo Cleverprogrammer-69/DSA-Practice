@@ -100,7 +100,7 @@ int main(){
     cout<< arr1.getSize()<<endl;
     arr1.get();
     int indexFound = arr1.findIndex(1000);
-    indexFound != -1 ? cout<<"Found at :"<<indexFound : cout<<"Not Found";
+    indexFound != -1 ? cout<<"Found at index: "<<indexFound : cout<<"Not Found";
     cout<<endl;
     cout<<arr1.insertAtStart(7)<<endl;
     arr1.get();
