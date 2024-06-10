@@ -67,6 +67,14 @@ class MyArray{
             size++;
             return size;
         }
+        int insertAtStart(int element){
+            for(int i=size-1;i>=0;i--){
+                arr[i+1]=arr[i];
+            }
+            arr[0]=element;
+            size++;
+            return size;
+        }
         int findIndex(int element){
             int foundIndex=-1;
             for(int i=0; i<size; i++){
@@ -91,6 +99,9 @@ int main(){
     arr1.push(1000);
     cout<< arr1.getSize()<<endl;
     arr1.get();
-    int indexFound = arr1.findIndex(40);
+    int indexFound = arr1.findIndex(1000);
     indexFound != -1 ? cout<<"Found at :"<<indexFound : cout<<"Not Found";
+    cout<<endl;
+    cout<<arr1.insertAtStart(7)<<endl;
+    arr1.get();
 }
