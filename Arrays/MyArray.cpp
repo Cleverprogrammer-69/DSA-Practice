@@ -32,6 +32,14 @@ public:
         }
     }
 
+    bool isFull() {
+        return length == 100;
+    }
+
+    bool isEmpty() {
+        return length == 0;
+    }
+
     int max() {
         int max = arr[0];
         for (int i = 1; i < length; i++) {
@@ -52,32 +60,42 @@ public:
         return min;
     }
 
-    int insert(int index, int element) {
-        for (int i = length - 1; i >= index; i--) {
-            arr[i + 1] = arr[i];
+    bool insert(int index, int element) {
+        if (index >= 0 && index <= length && !isFull()) {
+            for (int i = length - 1; i >= index; i--) {
+                arr[i + 1] = arr[i];
+            }
+            arr[index] = element;
+            length++;
+            get();
+            return true;
         }
-        arr[index] = element;
-        length++;
-        get();
-        return length;
+        return false;
     }
 
-    int delIndex(int index) {
-        for (int i = index; i < length - 1; i++) {
-            arr[i] = arr[i + 1];
+    bool delIndex(int index) {
+        if (index >= 0 && index < length && !isEmpty()) {
+            for (int i = index; i < length - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            length--;
+            get();
+            return true;
         }
-        length--;
-        get();
-        return length;
+        return false;
     }
 
-    int addAtEnd(int element) {
-        arr[length] = element;
-        length++;
-        return length;
+    bool insertAtEnd(int element) {
+        if (!isFull()) {
+            arr[length] = element;
+            length++;
+            get();
+            return true;
+        }
+        return false;
     }
 
-    int insertAtStart(int element) {
+    bool insertAtStart(int element) {
         return insert(0, element);
     }
 
@@ -96,13 +114,21 @@ public:
 int main() {
     MyArray arr1;
     int numbers[5] = {2, 4, 1, 2, 90};
+    cout << arr1.isEmpty() << endl;
+    cout << arr1.isFull() << endl;
     arr1.set(numbers, 5);
     arr1.get();
-    arr1.insert(2, 100);
+    if (!arr1.insert(2, 100)) {
+        cout << "Insert failed." << endl;
+    }
     cout << "Length: " << arr1.getLength() << endl;
-    arr1.delIndex(4);
+    if (!arr1.delIndex(4)) {
+        cout << "Delete failed." << endl;
+    }
     cout << "Length: " << arr1.getLength() << endl;
-    arr1.addAtEnd(1000);
+    if (!arr1.insertAtEnd(1000)) {
+        cout << "Insert at end failed." << endl;
+    }
     cout << "Length: " << arr1.getLength() << endl;
     arr1.get();
     int indexFound = arr1.findIndexOf(1000);
@@ -111,6 +137,8 @@ int main() {
     } else {
         cout << "Not Found" << endl;
     }
-    arr1.insertAtStart(7);
+    if (!arr1.insertAtStart(7)) {
+        cout << "Insert at start failed." << endl;
+    }
     arr1.get();
 }
